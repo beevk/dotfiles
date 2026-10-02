@@ -38,8 +38,38 @@
       "herdr"
     ];
     casks = [
+      # editors / IDEs
+      "webstorm"
+      "goland"
+      "visual-studio-code"
+      "cursor"
+      "antigravity"
+
+      # dev tools
+      "postman"
+      "nosqlbooster-for-mongodb"
+      "dbeaver-community"
+      "docker-desktop"
+      "ghostty"
       "wezterm"
+
+      # AI
+      "codex"
+      "chatgpt"
+      "claude"
       "claude-code"
+
+      # browsers
+      "brave-browser"
+      "google-chrome"
+
+      # everything else
+      "discord"
+      "localsend"
+      "obsidian"
+      "tailscale-app"
+      "windscribe"
+      "spotify"
     ];
   };
 }

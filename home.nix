@@ -16,6 +16,9 @@ in
     jq        # json on the command line
     lazygit
     neovim
+    go
+    fnm
+    uv
     # the font everything renders in
     nerd-fonts.hack
   ];
@@ -35,8 +38,8 @@ in
       push = "git push";
       pull = "git pull";
       m = "git switch main";
-      cc = "claude --dangerously-skip-permissions";
-      co = "codex --full-auto";
+      cc = "claude";
+      co = "codex";
     };
   };
 

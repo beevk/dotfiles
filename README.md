@@ -88,6 +88,8 @@ Edit the config files in place, then apply:
 That's it.
 No separate build-and-copy step.
 
+To add, find, or update apps, see [APPS.md](APPS.md).
+
 ## Make it yours
 
 This repo is mine.
@@ -137,6 +139,7 @@ If you don't use it, just remove it from `brews` in your copy.
 - `home.nix` - user-level config: shell, packages, prompt, and the symlinks described below.
 - `rebuild.sh` - re-applies the config after the first switch.
   Run this every time you make a change.
+- `APPS.md` - where to declare new apps, how to find their names, and how to update them.
 - `home/` - the actual config files that get symlinked into place; the sections below explain the shared symlink model and Pi's narrower selective setup.
 
 ## How the symlinks work
