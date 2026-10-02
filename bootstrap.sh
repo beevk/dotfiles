@@ -61,3 +61,4 @@ sudo "$NIX_BIN" run github:nix-darwin/nix-darwin/nix-darwin-26.05#darwin-rebuild
 # (Determinate adds nix to new shells' PATH) and re-run ./bootstrap.sh.
 
 echo "==> Done. Use ./rebuild.sh for future changes."
+echo "    Run 'exec zsh -l' (or open a new terminal) first so your PATH picks up the new system."
