@@ -71,12 +71,40 @@ Moving to the next release (for example 26.11) means editing the version numbers
 - `onActivation.autoUpdate = true` only refreshes Homebrew's list of available versions on rebuild. It does not upgrade installed apps.
 - To upgrade, run `brew upgrade` whenever you want, or add `onActivation.upgrade = true;` to the `homebrew` block so every rebuild upgrades. That makes each rebuild slower and can pull in new versions when you weren't expecting them.
 - Casks that update themselves (Chrome, Claude, and so on) handle their own updates. `brew upgrade` skips them unless you add `--greedy`.
+- Homebrew itself is pinned by the `nix-homebrew` input in `flake.lock`, so `brew update` and `autoUpdate` can't upgrade it. Only `nix flake update` can.
 
 ### App Store
 
 Updates through the App Store as usual, or with `mas upgrade`.
 
-## After bootstrap
+## Troubleshooting
+
+### `./rebuild.sh` fails right after bootstrap with `darwin-rebuild: command not found`
 
 The first `./bootstrap.sh` run changes your PATH, but only new shells see it.
 Run `exec zsh -l` or open a new terminal before using `./rebuild.sh` or newly installed tools.
+
+### A cask fails with `definition is invalid: undefined method ...`
+
+For example:
+
+```
+Error: Cask 'webstorm' definition is invalid: undefined method 'command_wrapper' for Cask 'webstorm'
+`brew bundle` failed! Failed to fetch webstorm, goland, ...
+```
+
+Your pinned Homebrew is older than the cask definitions, which Homebrew always downloads in their latest form.
+`brew bundle` fetches everything before installing anything, so one bad cask blocks every app in the list.
+Update the flake inputs, which brings in a newer Homebrew:
+
+```sh
+nix flake update
+./rebuild.sh
+git add flake.lock && git commit -m "Update flake inputs"
+```
+
+This updates every input on its current release branch, so it's low risk.
+If you only want the smallest change (for example, in the middle of other work), run `nix flake update nix-homebrew` instead.
+
+If something breaks after updating and you haven't committed yet, run `git checkout flake.lock` and `./rebuild.sh` to go back.
+If the newest `nix-homebrew` still pins a Homebrew that's too old, comment the failing cask out until it catches up.
