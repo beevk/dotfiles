@@ -78,10 +78,13 @@
       # everything else
       "discord"
       "localsend"
+      "macpacker"
       "obsidian"
+      "rectangle"
       "tailscale-app"
       "windscribe"
       "spotify"
+      "vorssaint"
     ];
   };
 }
