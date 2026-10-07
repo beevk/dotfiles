@@ -24,6 +24,8 @@ in
   ];
   fonts.fontconfig.enable = true;
   home.sessionVariables.EDITOR = "nvim";
+  # uv installs versioned Python executables and CLI tools here.
+  home.sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
   home.activation.createScreenshotsDirectory = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     run mkdir -p "${config.home.homeDirectory}/Documents/screenshots"
   '';
@@ -33,6 +35,8 @@ in
     autosuggestion.enable = true;      # ghost text from history
     syntaxHighlighting.enable = true;  # commands turn green when valid
     initContent = ''
+      # Load the default Node version; switch explicitly with fnm use per project.
+      eval "$(fnm env --shell zsh)"
       bindkey '^f' autosuggest-accept
     '';
     shellAliases = {
