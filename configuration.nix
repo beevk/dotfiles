@@ -46,6 +46,7 @@
     onActivation.cleanup = "zap";  # remove anything not listed here
     onActivation.autoUpdate = true;
     onActivation.extraFlags = [ "--force" ];
+    taps = [ "xykong/tap" ];
     brews = [
       "herdr"
     ];
@@ -77,6 +78,8 @@
 
       # everything else
       "discord"
+      "xykong/tap/flux-markdown"
+      "hiddenbar"
       "localsend"
       "macpacker"
       "obsidian"
